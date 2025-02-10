@@ -1,6 +1,6 @@
 <?php
 
-use Elazar\Flystream\Lock;
+use DrupalLibraries\Flystream\Lock;
 
 it('populates properties', function () {
     $path = 'foo';

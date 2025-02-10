@@ -1,6 +1,6 @@
 <?php
 
-use Elazar\Flystream\MemoryBuffer;
+use DrupalLibraries\Flystream\MemoryBuffer;
 use League\Flysystem\Filesystem;
 use League\Flysystem\InMemory\InMemoryFilesystemAdapter;
 

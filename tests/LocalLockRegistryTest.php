@@ -1,7 +1,7 @@
 <?php
 
-use Elazar\Flystream\Lock;
-use Elazar\Flystream\LocalLockRegistry;
+use DrupalLibraries\Flystream\Lock;
+use DrupalLibraries\Flystream\LocalLockRegistry;
 
 beforeEach(function () {
     $this->registry = new LocalLockRegistry();

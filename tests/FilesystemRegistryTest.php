@@ -1,7 +1,7 @@
 <?php
 
-use Elazar\Flystream\FilesystemRegistry;
-use Elazar\Flystream\FlystreamException;
+use DrupalLibraries\Flystream\FilesystemRegistry;
+use DrupalLibraries\Flystream\FlystreamException;
 use League\Flysystem\Filesystem;
 use League\Flysystem\FilesystemOperator;
 use League\Flysystem\InMemory\InMemoryFilesystemAdapter;

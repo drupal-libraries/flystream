@@ -1,6 +1,6 @@
 <?php
 
-use Elazar\Flystream\OverflowBuffer;
+use DrupalLibraries\Flystream\OverflowBuffer;
 use League\Flysystem\Filesystem;
 use League\Flysystem\InMemory\InMemoryFilesystemAdapter;
 

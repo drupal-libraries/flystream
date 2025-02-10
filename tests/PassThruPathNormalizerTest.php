@@ -1,6 +1,6 @@
 <?php
 
-use Elazar\Flystream\PassThruPathNormalizer;
+use DrupalLibraries\Flystream\PassThruPathNormalizer;
 
 beforeEach(function () {
     $this->normalizer = new PassThruPathNormalizer();

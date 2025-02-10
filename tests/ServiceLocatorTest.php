@@ -1,7 +1,7 @@
 <?php
 
-use Elazar\Flystream\FilesystemRegistry;
-use Elazar\Flystream\ServiceLocator;
+use DrupalLibraries\Flystream\FilesystemRegistry;
+use DrupalLibraries\Flystream\ServiceLocator;
 use League\Flysystem\PathNormalizer;
 use League\Flysystem\WhitespacePathNormalizer;
 

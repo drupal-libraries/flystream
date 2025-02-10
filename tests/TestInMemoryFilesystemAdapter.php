@@ -1,6 +1,6 @@
 <?php
 
-namespace Elazar\Flystream\Tests;
+namespace DrupalLibraries\Flystream\Tests;
 
 use League\MimeTypeDetection\{
     FinfoMimeTypeDetector,

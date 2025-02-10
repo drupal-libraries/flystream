@@ -1,10 +1,10 @@
 <?php
 
-use Elazar\Flystream\BufferInterface;
-use Elazar\Flystream\Container;
-use Elazar\Flystream\FileBuffer;
-use Elazar\Flystream\FlystreamException;
-use Elazar\Flystream\MemoryBuffer;
+use DrupalLibraries\Flystream\BufferInterface;
+use DrupalLibraries\Flystream\Container;
+use DrupalLibraries\Flystream\FileBuffer;
+use DrupalLibraries\Flystream\FlystreamException;
+use DrupalLibraries\Flystream\MemoryBuffer;
 
 it('can iterate, detect, and get default entries', function () {
     $container = new Container();

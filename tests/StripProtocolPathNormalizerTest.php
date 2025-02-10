@@ -1,7 +1,7 @@
 <?php
 
-use Elazar\Flystream\PassThruPathNormalizer;
-use Elazar\Flystream\StripProtocolPathNormalizer;
+use DrupalLibraries\Flystream\PassThruPathNormalizer;
+use DrupalLibraries\Flystream\StripProtocolPathNormalizer;
 use League\Flysystem\PathNormalizer;
 
 it('strips all protocols', function (string $path) {

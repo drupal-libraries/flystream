@@ -59,7 +59,7 @@ These examples below aren't comprehensive, but should provide a basic understand
  *    more details.
  */
 
-use Elazar\Flystream\ServiceLocator;
+use DrupalLibraries\Flystream\ServiceLocator;
 use League\Flysystem\Filesystem;
 use League\Flysystem\InMemory\InMemoryFilesystemAdapter;
 use League\Flysystem\PathNormalizer;
@@ -74,7 +74,7 @@ $filesystem = new Filesystem($adapter, $config, $pathNormalizer);
  *    custom protocol (e.g. 'mem').
  */
 
-use Elazar\Flystream\FilesystemRegistry;
+use DrupalLibraries\Flystream\FilesystemRegistry;
 
 $registry = ServiceLocator::get(FilesystemRegistry::class);
 $registry->register('mem', $filesystem);
@@ -146,7 +146,7 @@ If you're using a third-party adapter, you'll probably need path normalization t
 ```php
 <?php
 
-use Elazar\Flystream\ServiceLocator;
+use DrupalLibraries\Flystream\ServiceLocator;
 use League\Flysystem\Filesystem;
 use League\Flysystem\PathNormalizer;
 
@@ -160,8 +160,8 @@ If you would prefer to limit protocols removed by `StripProtocolPathNormalizer` 
 
 ```php
 <?php
-use Elazar\Flystream\ServiceLocator;
-use Elazar\Flystream\StripProtocolPathNormalizer;
+use DrupalLibraries\Flystream\ServiceLocator;
+use DrupalLibraries\Flystream\StripProtocolPathNormalizer;
 
 // To remove a single protocol, specify it as a string
 $pathNormalizer = new StripProtocolPathNormalizer('foo');
@@ -177,10 +177,10 @@ ServiceLocator::set(PathNormalizer::class, $pathNormalizer);
 ```php
 <?php
 
-use Elazar\Flystream\PassThruPathNormalizer;
+use DrupalLibraries\Flystream\PassThruPathNormalizer;
 use League\Flysystem\PathNormalizer;
-use Elazar\Flystream\ServiceLocator;
-use Elazar\Flystream\StripProtocolPathNormalizer;
+use DrupalLibraries\Flystream\ServiceLocator;
+use DrupalLibraries\Flystream\StripProtocolPathNormalizer;
 
 ServiceLocator::set(PathNormalizer::class, new StripProtocolPathNormalizer(
 
@@ -198,9 +198,9 @@ If you'd rather not apply any path normalization, you can use the `PassThruPathN
 ```php
 <?php
 
-use Elazar\Flystream\PassThruPathNormalizer;
+use DrupalLibraries\Flystream\PassThruPathNormalizer;
 use League\Flysystem\PathNormalizer;
-use Elazar\Flystream\ServiceLocator;
+use DrupalLibraries\Flystream\ServiceLocator;
 
 ServiceLocator::set(PathNormalizer::class, new PassThruPathNormalizer);
 ```
@@ -224,15 +224,15 @@ By default, Flystream uses the Memory strategy for optimal performance. Below ar
 ```php
 <?php
 
-use Elazar\Flystream\BufferInterface;
-use Elazar\Flystream\ServiceLocator;
+use DrupalLibraries\Flystream\BufferInterface;
+use DrupalLibraries\Flystream\ServiceLocator;
 
 // To use the File strategy:
-use Elazar\Flystream\FileBuffer;
+use DrupalLibraries\Flystream\FileBuffer;
 ServiceLocator::set(BufferInterface::class, FileBuffer::class);
 
 // To use the Overflow configuration with a default memory cap of 2 MB:
-use Elazar\Flystream\OverflowBuffer;
+use DrupalLibraries\Flystream\OverflowBuffer;
 ServiceLocator::set(BufferInterface::class, OverflowBuffer::class);
 
 // To use the Overflow configuration with a custom memory cap:
@@ -256,7 +256,7 @@ By default, Flystream uses this Unix-style visibility implementation with its de
 ```php
 <?php
 
-use Elazar\Flystream\ServiceLocator;
+use DrupalLibraries\Flystream\ServiceLocator;
 use League\Flysystem\UnixVisibility\PortableVisibilityConverter;
 use League\Flysystem\UnixVisibility\VisibilityConverter;
 
@@ -270,7 +270,7 @@ You can also configure Flystream to use a custom visibility implementation.
 ```php
 <?php
 
-use Elazar\Flystream\ServiceLocator;
+use DrupalLibraries\Flystream\ServiceLocator;
 use League\Flysystem\UnixVisibility\VisibilityConverter;
 use My\CustomVisibilityConverter;
 
@@ -294,9 +294,9 @@ If you'd rather disable locking entirely, you can configure Flystream to use the
 ```php
 <?php
 
-use Elazar\Flystream\LockRegistryInterface;
-use Elazar\Flystream\PermissiveLockRegistry;
-use Elazar\Flystream\ServiceLocator;
+use DrupalLibraries\Flystream\LockRegistryInterface;
+use DrupalLibraries\Flystream\PermissiveLockRegistry;
+use DrupalLibraries\Flystream\ServiceLocator;
 
 ServiceLocator::set(
     LockRegistryInterface::class,
@@ -311,8 +311,8 @@ Another option is to create your own lock registry implementation, such as a dis
 
 namespace My;
 
-use Elazar\Flystream\Lock;
-use Elazar\Flystream\LockRegistryInterface;
+use DrupalLibraries\Flystream\Lock;
+use DrupalLibraries\Flystream\LockRegistryInterface;
 
 class CustomLockRegistry implements LockRegistryInterface
 {
@@ -333,8 +333,8 @@ Then, configure Flystream to use it.
 ```php
 <?php
 
-use Elazar\Flystream\LockRegistryInterface;
-use Elazar\Flystream\ServiceLocator;
+use DrupalLibraries\Flystream\LockRegistryInterface;
+use DrupalLibraries\Flystream\ServiceLocator;
 use My\CustomLockRegistry;
 
 // If your implementation doesn't require constructor parameters:
@@ -361,7 +361,7 @@ By default, it uses the `NullLogger` implementation included with [`psr/log`](ht
 ```php
 <?php
 
-use Elazar\Flystream\ServiceLocator;
+use DrupalLibraries\Flystream\ServiceLocator;
 use Monolog\Logger;
 use Psr\Log\LoggerInterface;
 
@@ -375,10 +375,10 @@ ServiceLocator::set(LoggerInterface::class, $logger);
 ```php
 <?php
 
-use Elazar\Flystream\BufferInterface;
-use Elazar\Flystream\LoggingCompositeBuffer;
-use Elazar\Flystream\MemoryBuffer;
-use Elazar\Flystream\ServiceLocator;
+use DrupalLibraries\Flystream\BufferInterface;
+use DrupalLibraries\Flystream\LoggingCompositeBuffer;
+use DrupalLibraries\Flystream\MemoryBuffer;
+use DrupalLibraries\Flystream\ServiceLocator;
 use Monolog\Logger;
 use Psr\Log\LoggerInterface;
 

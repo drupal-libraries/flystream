@@ -1,7 +1,7 @@
 <?php
 
-use Elazar\Flystream\Lock;
-use Elazar\Flystream\PermissiveLockRegistry;
+use DrupalLibraries\Flystream\Lock;
+use DrupalLibraries\Flystream\PermissiveLockRegistry;
 
 beforeEach(function () {
     $this->registry = new PermissiveLockRegistry();

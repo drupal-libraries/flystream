@@ -1,8 +1,8 @@
 <?php
 
-namespace Elazar\Flystream;
+namespace DrupalLibraries\Flystream;
 
-use Elazar\Flystream\StreamWrapper;
+use DrupalLibraries\Flystream\StreamWrapper;
 use League\Flysystem\FilesystemOperator;
 
 /**

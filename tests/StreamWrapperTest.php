@@ -1,8 +1,8 @@
 <?php
 
-use Elazar\Flystream\FilesystemRegistry;
-use Elazar\Flystream\ServiceLocator;
-use Elazar\Flystream\Tests\TestInMemoryFilesystemAdapter;
+use DrupalLibraries\Flystream\FilesystemRegistry;
+use DrupalLibraries\Flystream\ServiceLocator;
+use DrupalLibraries\Flystream\Tests\TestInMemoryFilesystemAdapter;
 use League\Flysystem\FileAttributes;
 use League\Flysystem\Filesystem;
 use League\Flysystem\PathNormalizer;

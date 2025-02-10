@@ -1,7 +1,7 @@
 <?php
 
-use Elazar\Flystream\BufferInterface;
-use Elazar\Flystream\LoggingCompositeBuffer;
+use DrupalLibraries\Flystream\BufferInterface;
+use DrupalLibraries\Flystream\LoggingCompositeBuffer;
 use League\Flysystem\Filesystem;
 use League\Flysystem\FilesystemOperator;
 use League\Flysystem\InMemory\InMemoryFilesystemAdapter;
@@ -49,7 +49,7 @@ it('logs writes', function () {
         ->each
         ->toBeInstanceOf(LogRecord::class);
 
-    expect($records[0]['message'])->toBe('Elazar\Flystream\LoggingCompositeBuffer::write');
+    expect($records[0]['message'])->toBe('DrupalLibraries\Flystream\LoggingCompositeBuffer::write');
     expect($records[0]['context'])
         ->toHaveKeys(['buffer_class', 'buffer_id'])
         ->toMatchArray([
@@ -58,7 +58,7 @@ it('logs writes', function () {
         ]);
     expect($records[0]['level_name'])->toBe('INFO');
 
-    expect($records[1]['message'])->toBe('Elazar\Flystream\LoggingCompositeBuffer::write');
+    expect($records[1]['message'])->toBe('DrupalLibraries\Flystream\LoggingCompositeBuffer::write');
     expect($records[1]['context'])
         ->toHaveKeys(['buffer_class', 'buffer_id'])
         ->toMatchArray([
@@ -86,7 +86,7 @@ it('logs flushes', function () {
         ->each
         ->toBeInstanceOf(LogRecord::class);
 
-    expect($records[0]['message'])->toBe('Elazar\Flystream\LoggingCompositeBuffer::flush');
+    expect($records[0]['message'])->toBe('DrupalLibraries\Flystream\LoggingCompositeBuffer::flush');
     expect($records[0]['context'])
         ->toHaveKeys(['buffer_class', 'buffer_id', 'filesystem_id'])
         ->toMatchArray([
@@ -97,7 +97,7 @@ it('logs flushes', function () {
         ]);
     expect($records[0]['level_name'])->toBe('INFO');
 
-    expect($records[1]['message'])->toBe('Elazar\Flystream\LoggingCompositeBuffer::flush');
+    expect($records[1]['message'])->toBe('DrupalLibraries\Flystream\LoggingCompositeBuffer::flush');
     expect($records[1]['context'])
         ->toHaveKeys(['buffer_class', 'buffer_id', 'filesystem_id'])
         ->toMatchArray([
@@ -122,7 +122,7 @@ it('logs closes', function () {
         ->each
         ->toBeInstanceOf(LogRecord::class);
 
-    expect($records[0]['message'])->toBe('Elazar\Flystream\LoggingCompositeBuffer::close');
+    expect($records[0]['message'])->toBe('DrupalLibraries\Flystream\LoggingCompositeBuffer::close');
     expect($records[0]['context'])
         ->toHaveKeys(['buffer_class', 'buffer_id'])
         ->toMatchArray([
@@ -130,7 +130,7 @@ it('logs closes', function () {
         ]);
     expect($records[0]['level_name'])->toBe('INFO');
 
-    expect($records[1]['message'])->toBe('Elazar\Flystream\LoggingCompositeBuffer::close');
+    expect($records[1]['message'])->toBe('DrupalLibraries\Flystream\LoggingCompositeBuffer::close');
     expect($records[1]['context'])
         ->toHaveKeys(['buffer_class', 'buffer_id'])
         ->toMatchArray([

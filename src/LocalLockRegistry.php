@@ -1,6 +1,6 @@
 <?php
 
-namespace Elazar\Flystream;
+namespace DrupalLibraries\Flystream;
 
 use SplObjectStorage;
 
