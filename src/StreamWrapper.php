@@ -42,7 +42,7 @@ class StreamWrapper
         return true;
     }
 
-    public function dir_opendir(string $path, int $options): bool
+    public function dir_opendir($path, $options)
     {
         $this->log('info', __METHOD__, func_get_args());
         try {
@@ -83,7 +83,7 @@ class StreamWrapper
         return true;
     }
 
-    public function mkdir(string $path, int $mode, int $options): bool
+    public function mkdir($path, $mode, $options)
     {
         $this->log('info', __METHOD__, func_get_args());
         $visibility = $this->get(VisibilityConverter::class);
@@ -105,7 +105,7 @@ class StreamWrapper
         // @codeCoverageIgnoreEnd
     }
 
-    public function rename(string $path_from, string $path_to): bool
+    public function rename($path_from, $path_to)
     {
         $this->log('info', __METHOD__, func_get_args());
         $filesystem = $this->getFilesystem($path_from);
@@ -121,7 +121,7 @@ class StreamWrapper
         }
     }
 
-    public function rmdir(string $path, int $options): bool
+    public function rmdir($path, $options)
     {
         $this->log('info', __METHOD__, func_get_args());
         $filesystem = $this->getFilesystem($path);
@@ -144,7 +144,7 @@ class StreamWrapper
     /**
      * @return resource
      */
-    public function stream_cast(int $cast_as)
+    public function stream_cast($cast_as)
     {
         $this->log('info', __METHOD__, func_get_args());
         $this->openRead();
@@ -188,7 +188,7 @@ class StreamWrapper
         return true;
     }
 
-    public function stream_lock(int $operation): bool
+    public function stream_lock($operation)
     {
         $this->log('info', __METHOD__, func_get_args());
 
@@ -221,11 +221,7 @@ class StreamWrapper
     /**
      * @param mixed $value
      */
-    public function stream_metadata(
-        string $path,
-        int $option,
-        $value
-    ): bool {
+    public function stream_metadata($path, $option, $value) {
         $this->log('info', __METHOD__, func_get_args());
         if ($option === STREAM_META_TOUCH) {
             $time = time();
@@ -247,12 +243,7 @@ class StreamWrapper
         return false;
     }
 
-    public function stream_open(
-        string $path,
-        string $mode,
-        int $options,
-        ?string &$opened_path = null
-    ): bool {
+    public function stream_open($path, $mode, $options, &$opened_path) {
         $this->log('info', __METHOD__, func_get_args());
         $this->path = $path;
         $this->mode = $mode;
@@ -265,22 +256,19 @@ class StreamWrapper
         return true;
     }
 
-    public function stream_read(int $count): string
-    {
+    public function stream_read($count) {
         $this->log('info', __METHOD__, func_get_args());
         $this->openRead();
         return stream_get_contents($this->read, $count);
     }
 
-    public function stream_seek(int $offset, int $whence = SEEK_SET): bool
-    {
+    public function stream_seek($offset, $whence = \Drupal\Core\StreamWrapper\SEEK_SET) {
         $this->log('info', __METHOD__, func_get_args());
         $this->openRead();
         return fseek($this->read, $offset, $whence) === 0;
     }
 
-    public function stream_set_option(int $option, int $arg1, ?int $arg2 = null): bool
-    {
+    public function stream_set_option($option, $arg1, $arg2) {
         $this->log('info', __METHOD__, func_get_args());
         $this->openRead();
 
@@ -298,22 +286,19 @@ class StreamWrapper
     /**
      * @return array|false
      */
-    public function stream_stat()
-    {
+    public function stream_stat() {
         $this->log('info', __METHOD__);
         $this->openRead();
         return fstat($this->read);
     }
 
-    public function stream_tell(): int
-    {
+    public function stream_tell() {
         $this->log('info', __METHOD__);
         $this->openRead();
         return (int) ftell($this->read);
     }
 
-    public function stream_truncate(int $new_size): bool
-    {
+    public function stream_truncate($new_size) {
         $this->log('info', __METHOD__, func_get_args());
         $this->openRead();
         return ftruncate($this->read, $new_size);
@@ -322,8 +307,7 @@ class StreamWrapper
     /**
      * @return int|false
      */
-    public function stream_write(string $data)
-    {
+    public function stream_write($data) {
         $this->log('info', __METHOD__, func_get_args());
         try {
             if ($this->mode === 'r') {
@@ -344,8 +328,7 @@ class StreamWrapper
         }
     }
 
-    public function unlink(string $path): bool
-    {
+    public function unlink($path) {
         $this->log('info', __METHOD__, func_get_args());
         $filesystem = $this->getFilesystem($path);
         try {
@@ -366,8 +349,7 @@ class StreamWrapper
     /**
      * @return array|false
      */
-    public function url_stat(string $path, int $flags)
-    {
+    public function url_stat($path, $flags) {
         $this->log('info', __METHOD__, func_get_args());
 
         $filesystem = $this->getFilesystem($path);
