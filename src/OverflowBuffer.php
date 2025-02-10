@@ -9,13 +9,13 @@ class OverflowBuffer implements BufferInterface
     /**
      * @var resource
      */
-    private $stream = null;
+    protected $stream = null;
 
     /**
      * Maximum amount of data in bytes to buffer in memory before using a
      * temporary file, defaults to 2 MB
      */
-    private ?int $maxMemory = null;
+    protected ?int $maxMemory = null;
 
     /**
      * {@inheritdoc}

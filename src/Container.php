@@ -17,12 +17,12 @@ class Container implements ContainerInterface, IteratorAggregate
     /**
      * @var callable[]
      */
-    private array $entries;
+    protected array $entries;
 
     /**
      * @var object[]
      */
-    private array $instances;
+    protected array $instances;
 
     public function __construct()
     {

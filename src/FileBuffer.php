@@ -9,7 +9,7 @@ class FileBuffer implements BufferInterface
     /**
      * @var resource
      */
-    private $stream = null;
+    protected $stream = null;
 
     /**
      * {@inheritdoc}

@@ -7,9 +7,9 @@ use Psr\Log\LoggerInterface;
 
 class LoggingCompositeBuffer implements BufferInterface
 {
-    private BufferInterface $buffer;
+    protected BufferInterface $buffer;
 
-    private LoggerInterface $logger;
+    protected LoggerInterface $logger;
 
     public function __construct(
         BufferInterface $buffer,
@@ -73,7 +73,7 @@ class LoggingCompositeBuffer implements BufferInterface
         $this->logger->info(__METHOD__, $context);
     }
 
-    private function getContext(array $add = []): array
+    protected function getContext(array $add = []): array
     {
         $default = [
             'buffer_class' => get_class($this->buffer),

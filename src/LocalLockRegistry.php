@@ -6,7 +6,7 @@ use SplObjectStorage;
 
 class LocalLockRegistry implements LockRegistryInterface
 {
-    private array $locks = [];
+    protected array $locks = [];
 
     public function acquire(Lock $lock): bool
     {

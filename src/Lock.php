@@ -7,8 +7,8 @@ class Lock
     public const TYPE_SHARED = 1;
     public const TYPE_EXCLUSIVE = 2;
 
-    private string $path;
-    private int $type;
+    protected string $path;
+    protected int $type;
 
     public function __construct(
         string $path,

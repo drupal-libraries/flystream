@@ -10,9 +10,9 @@ class StripProtocolPathNormalizer implements PathNormalizer
     /**
      * @var string[]|null
      */
-    private ?array $protocols;
+    protected ?array $protocols;
 
-    private ?PathNormalizer $delegateNormalizer;
+    protected ?PathNormalizer $delegateNormalizer;
 
     /**
      * @param string|string[]|null $protocols

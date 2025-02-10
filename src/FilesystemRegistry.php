@@ -14,7 +14,7 @@ class FilesystemRegistry
     /**
      * @var array<string, FilesystemOperator>
      */
-    private array $filesystems = [];
+    protected array $filesystems = [];
 
     public function register(
         string $protocol,
@@ -47,7 +47,7 @@ class FilesystemRegistry
         return array_key_exists($protocol, $this->filesystems);
     }
 
-    private function checkForProtocol(string $protocol): void
+    protected function checkForProtocol(string $protocol): void
     {
         if (!isset($this->filesystems[$protocol])) {
             throw FlystreamException::protocolNotRegistered($protocol);

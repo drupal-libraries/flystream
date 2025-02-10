@@ -16,20 +16,20 @@ use Throwable;
 
 class StreamWrapper
 {
-    private ?Lock $lock = null;
+    protected ?Lock $lock = null;
 
-    private ?string $path = null;
+    protected ?string $path = null;
 
-    private ?string $mode = null;
+    protected ?string $mode = null;
 
-    private ?Iterator $dir = null;
+    protected ?Iterator $dir = null;
 
     /**
      * @var resource|null
      */
-    private $read = null;
+    protected $read = null;
 
-    private ?BufferInterface $buffer = null;
+    protected ?BufferInterface $buffer = null;
 
     /** @var resource */
     public $context;
@@ -406,7 +406,7 @@ class StreamWrapper
         ];
     }
 
-    private function getConfig(string $path, array $overrides = []): array
+    protected function getConfig(string $path, array $overrides = []): array
     {
         $config = [];
         if ($this->context !== null) {
@@ -417,7 +417,7 @@ class StreamWrapper
         return array_merge($config, $overrides);
     }
 
-    private function getFilesystem(string $path): FilesystemOperator
+    protected function getFilesystem(string $path): FilesystemOperator
     {
         $protocol = $this->getProtocol($path);
         $registry = $this->get(FilesystemRegistry::class);
@@ -430,7 +430,7 @@ class StreamWrapper
      * @param string $path
      * @return string|null
      */
-    private function getProtocol(string $path): ?string
+    protected function getProtocol(string $path): ?string
     {
         $protocol = parse_url($path, PHP_URL_SCHEME);
         if ($protocol === false && ($pos = strpos($path, ':/')) !== false) {
@@ -439,12 +439,12 @@ class StreamWrapper
         return $protocol ?: null;
     }
 
-    private function get(string $key)
+    protected function get(string $key)
     {
         return ServiceLocator::get($key);
     }
 
-    private function getDir(string $path): Iterator
+    protected function getDir(string $path): Iterator
     {
         $filesystem = $this->getFilesystem($path);
         $dir = $filesystem->listContents($path, false);
@@ -461,7 +461,7 @@ class StreamWrapper
         // @codeCoverageIgnoreEnd
     }
 
-    private function openRead(): void
+    protected function openRead(): void
     {
         if ($this->read === null) {
             $filesystem = $this->getFilesystem($this->path);
@@ -469,7 +469,7 @@ class StreamWrapper
         }
     }
 
-    private function log(
+    protected function log(
         string $level,
         string $message,
         array $context = []

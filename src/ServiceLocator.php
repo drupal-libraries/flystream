@@ -4,9 +4,9 @@ namespace DrupalLibraries\Flystream;
 
 class ServiceLocator
 {
-    private static ?self $instance = null;
+    protected static ?self $instance = null;
 
-    private Container $container;
+    protected Container $container;
 
     public function __construct()
     {
