@@ -87,7 +87,7 @@ class StreamWrapper
     {
         $this->log('info', __METHOD__, func_get_args());
         $visibility = $this->get(VisibilityConverter::class);
-        $filesystem = $this->getFilesystem($path);
+        $filesystem = $this->getFilesystemObject($path);
         try {
             $config = $this->getConfig($path, [
                 Config::OPTION_DIRECTORY_VISIBILITY =>
@@ -108,7 +108,7 @@ class StreamWrapper
     public function rename($path_from, $path_to)
     {
         $this->log('info', __METHOD__, func_get_args());
-        $filesystem = $this->getFilesystem($path_from);
+        $filesystem = $this->getFilesystemObject($path_from);
         try {
             $config = $this->getConfig($path_to);
             $filesystem->move($path_from, $path_to, $config);
@@ -124,7 +124,7 @@ class StreamWrapper
     public function rmdir($path, $options)
     {
         $this->log('info', __METHOD__, func_get_args());
-        $filesystem = $this->getFilesystem($path);
+        $filesystem = $this->getFilesystemObject($path);
         try {
             $filesystem->deleteDirectory($path);
             return true;
@@ -175,7 +175,7 @@ class StreamWrapper
         $this->log('info', __METHOD__);
         try {
             $this->buffer->flush(
-                $this->getFilesystem($this->path),
+                $this->getFilesystemObject($this->path),
                 $this->path,
                 $this->getConfig($this->path)
             );
@@ -225,7 +225,7 @@ class StreamWrapper
         $this->log('info', __METHOD__, func_get_args());
         if ($option === STREAM_META_TOUCH) {
             $time = time();
-            $filesystem = $this->getFilesystem($path);
+            $filesystem = $this->getFilesystemObject($path);
             $config = $this->getConfig($path);
             try {
                 $filesystem->write($path, '', $config);
@@ -330,7 +330,7 @@ class StreamWrapper
 
     public function unlink($path) {
         $this->log('info', __METHOD__, func_get_args());
-        $filesystem = $this->getFilesystem($path);
+        $filesystem = $this->getFilesystemObject($path);
         try {
             $filesystem->delete($path);
             return true;
@@ -352,7 +352,7 @@ class StreamWrapper
     public function url_stat($path, $flags) {
         $this->log('info', __METHOD__, func_get_args());
 
-        $filesystem = $this->getFilesystem($path);
+        $filesystem = $this->getFilesystemObject($path);
         $visibility = $this->get(VisibilityConverter::class);
 
         if ($filesystem->fileExists($path)) {
@@ -399,7 +399,7 @@ class StreamWrapper
         return array_merge($config, $overrides);
     }
 
-    protected function getFilesystem(string $path): FilesystemOperator
+    protected function getFilesystemObject(string $path): FilesystemOperator
     {
         $protocol = $this->getProtocol($path);
         $registry = $this->get(FilesystemRegistry::class);
@@ -428,7 +428,7 @@ class StreamWrapper
 
     protected function getDir(string $path): Iterator
     {
-        $filesystem = $this->getFilesystem($path);
+        $filesystem = $this->getFilesystemObject($path);
         $dir = $filesystem->listContents($path, false);
         if ($dir instanceof IteratorAggregate) {
             return $dir->getIterator();
@@ -446,7 +446,7 @@ class StreamWrapper
     protected function openRead(): void
     {
         if ($this->read === null) {
-            $filesystem = $this->getFilesystem($this->path);
+            $filesystem = $this->getFilesystemObject($this->path);
             $this->read = $filesystem->readStream($this->path);
         }
     }
