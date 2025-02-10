@@ -1,9 +1,10 @@
 # Flystream
 
-[![PHP Version Support](https://img.shields.io/static/v1?label=php&message=%3E=%208.1.0&color=blue)](https://packagist.org/packages/elazar/flystream)
-[![Packagist Version](https://img.shields.io/static/v1?label=packagist&message=1.2.0&color=blue)](https://packagist.org/packages/elazar/flystream)
+This is a modified fork of elazar/flystream v1.2.0, with modifications to allow for extending classes specifically for use in Drupal's Flysystem ecosystem.
+
+[![PHP Version Support](https://img.shields.io/static/v1?label=php&message=%3E=%208.1.0&color=blue)](https://packagist.org/packages/drupal-libraries/flystream)
+[![Packagist Version](https://img.shields.io/static/v1?label=packagist&message=1.2.0&color=blue)](https://packagist.org/packages/drupal-libraries/flystream)
 [![Software License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE.md)
-[![Buy Me a Cofee](https://img.shields.io/badge/buy%20me%20a%20coffee-donate-blue.svg)](https://ko-fi.com/elazar)
 
 [Flysystem v2/3](https://flysystem.thephpleague.com/v2/docs/) + [PHP stream wrappers](https://www.php.net/manual/en/class.streamwrapper.php) = 🔥
 
@@ -17,14 +18,6 @@ Released under the [MIT License](https://en.wikipedia.org/wiki/MIT_License).
 * Intercepting filesystem operations for verification in tests.
 * Improving the speed of tests where the code under test would otherwise require access to the local filesystem.
 
-## Unsupported Use Cases
-
-* Flystream doesn't and won't support Flysystem v1. If you want a similar library for v1, see [twistor/flysystem-stream-wrapper](https://github.com/twistor/flysystem-stream-wrapper).
-
-## Known Issues
-
-* If a file or directory handle is not explicitly closed after use (i.e. using [`fclose()`](https://www.php.net/fclose) or [`closedir()`](https://www.php.net/closedir) as appropriate), PHP will implicitly attempt to close it during [shutdown](https://www.php.net/manual/en/function.register-shutdown-function.php). This situation may trigger a segmentation fault in some environments. This issue has [been resolved](https://github.com/elazar/xdebug-date-stream-php-segfault) and is available in PHP 7.4.23, 8.0.10, and 8.1.0. In older versions, the easiest work-around is to ensure that file and directory handles are explicitly closed.
-
 ## Requirements
 
 * PHP 8.1+
@@ -35,7 +28,7 @@ Released under the [MIT License](https://en.wikipedia.org/wiki/MIT_License).
 Use [Composer](https://getcomposer.org/).
 
 ```sh
-composer require elazar/flystream
+composer require drupal-libraries/flystream
 ```
 
 **Note**: This will automatically install the latest version of the Flysystem core library that is available for your environment. However, you must handle installing adapters yourself. See [the Flysystem documentation](https://flysystem.thephpleague.com/docs/) for a list of official adapters.
